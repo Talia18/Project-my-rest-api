@@ -395,4 +395,4 @@ Static file are located in the "public" folder, and are served if no previous ro
 11. "morgan": logging requests to the console.
 12. "lodash": for easy functionality.
 
-### Have Fun !
+## enjoy 🤗

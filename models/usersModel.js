@@ -82,7 +82,7 @@ const usersSchema = new mongoose.Schema({
     },
     city: {
       type: String,
-      minlength: 6,
+      minlength: 2,
       maxlength: 255,
       required: true,
     },
@@ -158,7 +158,7 @@ function validateUser(user) {
     address: Joi.object({
       state: Joi.string().allow(""),
       country: Joi.string().min(3).max(255).required(),
-      city: Joi.string().min(6).max(255).required(),
+      city: Joi.string().min(2).max(255).required(),
       street: Joi.string().min(3).max(255).required(),
       houseNumber: Joi.string().min(1).max(10).required(),
       zip: Joi.string().min(0).max(12),
