@@ -1,0 +1,165 @@
+@local=http://localhost:3000
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTA4NzI4NzlhNjBkM2Y0ODlhYjM3ZTYiLCJpc0J1c2luZXNzIjp0cnVlLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2OTUwNTI0OTh9.jx6FHbLLzy0DDpb4jTjU4nzIwYbuiO4tiXk0ITpssi4
+@tokenBiz=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTA4NzI4ODlhNjBkM2Y0ODlhYjM3ZTgiLCJpc0J1c2luZXNzIjp0cnVlLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjk1MDUyNTM2fQ.jw17LMqbM0kzv6fe4ugiJP9NVx3pwvCLMbmfOTNAgbM
+@tokenRegular=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTA4NzI4NzlhNjBkM2Y0ODlhYjM3ZTQiLCJpc0J1c2luZXNzIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY5NTA2MTI3MX0.wYCBB9VhCA6GWo9SAWozO4bjhJ2t0fcjQa9OhDWNC6s
+
+
+### Users Route
+
+
+### Create New User / Register / Sign up
+POST {{local}}/users
+Content-Type: application/json
+
+{
+    "name":{
+        "first":"Talia",
+        "last":"Vaknin"
+    },
+    "phone":"0526094760",
+    "email":"talia@talia.net",
+    "password":"123456",
+    "isBusiness":true,
+    "address":{
+        "state":"",
+        "country":"Israel",
+        "city":"Holon",
+        "street":"Greenboim",
+        "houseNumber":"30A"
+    }
+}
+
+
+### Authenticate (login) / Sign in
+POST {{local}}/users/login
+Content-Type: application/json
+
+{
+  "email": "jane_doe@gmail.com",
+  "password": "Aa123456&"
+}
+
+
+### Get all users
+GET {{local}}/users/
+x-auth-token: {{token}}
+
+
+### Get user by ID
+GET {{local}}/users/650872879a60d3f489ab37e4
+x-auth-token: {{token}}
+
+
+### Edit user
+PUT {{local}}/users/65032839600612f6608dea07
+Content-Type: application/json
+x-auth-token: {{token}}
+
+{
+    "name":{
+        "first":"Lior",
+        "last":"Tahulian"
+    },
+    "phone":"0526094760",
+    "email":"ben@ben.net",
+    "password":"123456",
+    "isBusiness":true,
+    "address":{
+        "state":"",
+        "country":"Israel",
+        "city":"Netanya",
+        "street":"Greenboim",
+        "houseNumber":"30A"
+    }
+}
+
+
+### Change isBusiness status
+PATCH {{local}}/users/65032839600612f6608dea07
+Content-Type: application/json
+x-auth-token: {{tokenRegular}}
+
+{
+"isBusiness":true
+}
+
+### Delete user
+DELETE {{local}}/users/65032839600612f6608dea07
+x-auth-token: {{tokenRegular}}
+
+
+### Static check
+GET {{local}}/hello.html
+
+
+##############################################################################################################################################################################################################################
+
+
+### Cards Route
+
+
+### Get all cards
+GET {{local}}/cards
+
+
+### Get my cards
+GET {{local}}/cards/my-cards
+x-auth-token: {{tokenRegular}}
+
+
+### Get card by ID
+GET {{local}}/cards/650872889a60d3f489ab37eb
+
+
+### Create new card
+POST {{local}}/cards
+Content-Type: application/json
+x-auth-token: {{tokenRegular}}
+
+{
+    "title":"My Card Title",
+    "subtitle":"My Card subTitle",
+    "description":"My Card description",
+    "phone":"0526094760",
+    "email":"d@d7.ben",
+    "web":"myCards.web",
+    "address":{
+        "state":"",
+        "country":"Israel",
+        "city":"Ramat-Gan",
+        "street":"Gronboim",
+        "houseNumber":"30A"
+    }
+}
+
+
+### Edit card
+PUT {{local}}/cards/650872889a60d3f489ab37f1
+Content-Type: application/json
+x-auth-token: {{tokenBiz}}
+
+{
+    "title":"Editted Card Title",
+    "subtitle":"Myyyyyyy Editted Card subTitle",
+    "description":"Myyyyyyyyyyy Card description",
+    "phone":"0526094760",
+    "email":"d@d7.ben",
+    "web":"myCards.web",
+    "address":{
+        "state":"",
+        "country":"Israel",
+        "city":"Netanya",
+        "street":"Gronboim",
+        "houseNumber":"30A"
+    }
+}
+
+
+### Like card
+PATCH {{local}}/cards/650872889a60d3f489ab37f1
+x-auth-token: {{tokenRegular}}
+
+
+### Delete card
+DELETE {{local}}/cards/650872889a60d3f489ab37f1
+x-auth-token: {{tokenBiz}}
